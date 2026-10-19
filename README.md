@@ -35,12 +35,12 @@ The install prompt defaults to **full** when rnsd is not yet installed, and to *
 
 Direct install:
 ```
-curl -fsSL https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/kishontivf/rnsd/master/install.sh | sudo bash
 ```
 
 Pre-verifiable version:
 ```
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/install.sh
 less install.sh
 sudo bash install.sh
 ```
@@ -49,7 +49,7 @@ Non-interactive (for `curl | sh` / CI — skips the prompts):
 ```
 # RNS_ENV=apt|apk               RNS_INSTALL=full|rnsd|notifier|fix|update
 # (legacy: RNS_NOTIFIER=yes|no  → yes=full, no=rnsd)
-curl -fsSL https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh | RNS_ENV=apt RNS_INSTALL=full sudo -E bash
+curl -fsSL https://raw.githubusercontent.com/kishontivf/rnsd/master/install.sh | RNS_ENV=apt RNS_INSTALL=full sudo -E bash
 
 # Examples:
 #   fresh Debian VM, everything:       RNS_ENV=apt RNS_INSTALL=full
@@ -62,7 +62,7 @@ curl -fsSL https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh | RN
 Or on the server itself, non-interactively from a downloaded copy:
 ```
 ssh admin@node.example.com
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/install.sh
 sudo RNS_ENV=apt RNS_INSTALL=full sh install.sh
 ```
 
@@ -95,7 +95,7 @@ The repo never contains a `.p8`; the key is uploaded by hand after the install. 
 scp AuthKey_<KEYID>.p8 <user>@<server>:/tmp/
 
 # 3. On the server: get the installer and install the key for the environment it serves.
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/install.sh
 sudo sh install.sh --install-key /tmp/AuthKey_<KEYID>.p8 \
      --team-id <TEAMID> --bundle-id app.analog.dev --env sandbox
 
@@ -107,7 +107,7 @@ sudo sh install.sh --install-key /tmp/AuthKey_<KEYID2>.p8 \
 shred -u /tmp/AuthKey_*.p8
 
 # 5. Verify.
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/checkHealth.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/checkHealth.sh
 sudo sh checkHealth.sh        # expect: [apns.sandbox] configured — … (key: encrypted credential)
 ```
 
@@ -119,7 +119,7 @@ scp AuthKey_ABC123DEFG.p8 AuthKey_XYZ789UVWX.p8 admin@node.example.com:/tmp/
 
 # on the server
 ssh admin@node.example.com
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/install.sh
 sudo sh install.sh --install-key /tmp/AuthKey_ABC123DEFG.p8 --team-id A1B2C3D4E5 --bundle-id app.analog.dev --env sandbox
 sudo sh install.sh --install-key /tmp/AuthKey_XYZ789UVWX.p8 --team-id A1B2C3D4E5 --bundle-id app.analog.app --env production
 shred -u /tmp/AuthKey_ABC123DEFG.p8 /tmp/AuthKey_XYZ789UVWX.p8
@@ -258,7 +258,7 @@ reports 0 peers as expected rather than as a warning.
 ### Health check
 
 ```
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/checkHealth.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/checkHealth.sh
 sudo sh checkHealth.sh
 ```
 
@@ -310,7 +310,7 @@ Walks every layer and prints one `PASS` / `WARN` / `FAIL` line per item: clock s
 ### Repair / update an existing node
 
 ```
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/install.sh
 sudo sh install.sh --fix        # or: menu option 4, or RNS_INSTALL=fix
 ```
 
@@ -339,7 +339,7 @@ sudo sh changeRnsPort.sh 4242
 
 Example — move from the old default 7822 to 4242 and check:
 ```
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/changeRnsPort.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/changeRnsPort.sh
 sudo sh changeRnsPort.sh 4242
 ss -tlnp | grep rnsd              # 0.0.0.0:4242
 ```
@@ -368,24 +368,24 @@ They take `RNS_SCOPE=analog|public` like `install.sh` — and default to `analog
 
 Direct install on Debian/Ubuntu:
 ```
-curl -fsSL https://raw.githubusercontent.com/Paydogs/rnsd/master/installRnsd_apt.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/kishontivf/rnsd/master/installRnsd_apt.sh | sudo bash
 ```
 
 Pre-verifiable version:
 ```
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/installRnsd_apt.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/installRnsd_apt.sh
 less installRnsd_apt.sh
 sudo bash installRnsd_apt.sh
 ```
 
 Direct install on Alpine:
 ```
-wget -qO- https://raw.githubusercontent.com/Paydogs/rnsd/master/installRnsd_apk.sh | sh
+wget -qO- https://raw.githubusercontent.com/kishontivf/rnsd/master/installRnsd_apk.sh | sh
 ```
 
 Pre-verifiable version:
 ```
-curl -fsSLO https://raw.githubusercontent.com/Paydogs/rnsd/master/installRnsd_apk.sh
+curl -fsSLO https://raw.githubusercontent.com/kishontivf/rnsd/master/installRnsd_apk.sh
 cat installRnsd_apk.sh
 chmod +x installRnsd_apk.sh
 ./installRnsd_apk.sh
@@ -420,12 +420,12 @@ the iOS background wake-up design needs alongside a running rnsd:
 
 Install on Debian/Ubuntu (after `installRnsd_apt.sh`):
 ```
-curl -fsSL https://raw.githubusercontent.com/Paydogs/rnsd/master/installAnalogNotifier_apt.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/kishontivf/rnsd/master/installAnalogNotifier_apt.sh | sudo bash
 ```
 
 Install on Alpine (after `installRnsd_apk.sh`):
 ```
-wget -qO- https://raw.githubusercontent.com/Paydogs/rnsd/master/installAnalogNotifier_apk.sh | sh
+wget -qO- https://raw.githubusercontent.com/kishontivf/rnsd/master/installAnalogNotifier_apk.sh | sh
 ```
 
 Activate the notifier after install:

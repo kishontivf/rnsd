@@ -88,8 +88,8 @@
 #   sudo ./install.sh --fix           # repair/update an existing install, no prompts
 #   sudo ./install.sh --update        # upgrade rns + lxmf via pip, restart services
 #   sudo ./install.sh --install-key AuthKey_XXXX.p8 --team-id T --bundle-id B --env production|sandbox
-#   curl -fsSL https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh | sudo bash
-#   wget -qO- https://raw.githubusercontent.com/Paydogs/rnsd/master/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/kishontivf/rnsd/master/install.sh | sudo bash
+#   wget -qO- https://raw.githubusercontent.com/kishontivf/rnsd/master/install.sh | sh
 #
 # Tested on:
 #   - Debian 11/12/13, Ubuntu 22.04/24.04   (systemd, PEP 668 aware)
@@ -138,7 +138,7 @@ LXMD_STORE_DIR="${LXMD_CONFIG_DIR}/storage/lxmf/messagestore"
 # when run via `curl | sh`. Symlinked onto the PATH so `readLogs.sh -f` works from anywhere.
 TOOLS_DIR="${TOOLS_DIR:-/opt/rnsd-tools}"
 TOOLS_BIN_DIR="${TOOLS_BIN_DIR:-/usr/local/sbin}"
-TOOLS_BASE_URL="${TOOLS_BASE_URL:-https://raw.githubusercontent.com/Paydogs/rnsd/master}"
+TOOLS_BASE_URL="${TOOLS_BASE_URL:-https://raw.githubusercontent.com/kishontivf/rnsd/master}"
 TOOLS="checkHealth.sh readLogs.sh rnsdLog.sh notifierLog.sh listTokens.sh reticulumStatus.sh \
 restartRnsd.sh restartLxmd.sh clearLxmd.sh editRnsConfig.sh editLxmdConfig.sh changeRnsPort.sh"
 # Where the APNs keys end up (one per environment, production|sandbox):
